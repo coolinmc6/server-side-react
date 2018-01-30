@@ -13,7 +13,7 @@
 
 ![alt text][logo]
 
-[logo]: https://github.com/coolinmc6/server-side-react/images/L04-ssr-flowchart.png "Server Side React Flow"
+[logo]: https://github.com/coolinmc6/server-side-react/blob/master/images/L04-ssr-flowchart.png "Server Side React Flow"
 
 
 # Let's Get Coding
