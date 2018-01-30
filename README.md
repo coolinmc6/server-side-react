@@ -5,7 +5,7 @@
 
 ## Why Server Side Rendering (L3)
 - Browser requests page => Browser requests JS file => Content Visible
-- Browser requests page => Browser requests JS file => Raect app bots, requests json => Content Visible
+- Browser requests page => Browser requests JS file => React app boots, requests json => Content Visible
 - loading the page as soon as possible
 - server side rendering is designed to content rendered for the user as soon as possible
 
