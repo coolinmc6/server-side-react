@@ -11,7 +11,7 @@
 
 ## Server Side Rendering (SSR) Overview (L4)
 
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
+[logo]: https://github.com/coolinmc6/server-side-react/images/L04-ssr-flowchart.png "Server Side React Flow"
 
 
 # Let's Get Coding
