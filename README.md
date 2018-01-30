@@ -13,8 +13,12 @@
 
 ![alt text][logo]
 
-[logo]: https://github.com/coolinmc6/server-side-react/blob/master/images/L04-ssr-flowchart.png "Server Side React Flow"
+[logo]: https://github.com/coolinmc6/server-side-react/blob/master/images/L04-ssr-flowchart.png  "Server Side React Flow"
 
+## App Overview (L5)
+- very basic app => not much functionality
+
+## Server Architecture Approach (L6)
 
 # Let's Get Coding
 
