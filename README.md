@@ -11,6 +11,8 @@
 
 ## Server Side Rendering (SSR) Overview (L4)
 
+![alt text][logo]
+
 [logo]: https://github.com/coolinmc6/server-side-react/images/L04-ssr-flowchart.png "Server Side React Flow"
 
 
