@@ -9,8 +9,9 @@
 - loading the page as soon as possible
 - server side rendering is designed to content rendered for the user as soon as possible
 
-## Server Side Rendering (SSR) Overview
+## Server Side Rendering (SSR) Overview (L4)
 
+[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
 
 
 # Let's Get Coding
