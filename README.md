@@ -15,12 +15,31 @@
 
 [logo]: https://github.com/coolinmc6/server-side-react/blob/master/images/L04-ssr-flowchart.png  "Server Side React Flow"
 
+# Let's Get Coding
+
 ## App Overview (L5)
 - very basic app => not much functionality
 
 ## Server Architecture Approach (L6)
+- we are running two separate servers
+- API Server => already built for us
+- Rendering Server => **this is what we make**
+- Why two back-end servers?
+- We are de-coupling the business logic and data layer from the view layer
+	+ Business Logic & Data Layer
+		* db access
+		* validation
+		* authentication
+		* authorization
+		* logging
+	+ View Layer
+		* take data
+		* produce HTML
+- server side rendering is slow and performance is a big concern
 
-# Let's Get Coding
+## Boilerplate Setup (L8)
+
+
 
 # Server Configuration
 
