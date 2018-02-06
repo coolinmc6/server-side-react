@@ -77,7 +77,6 @@ import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import Home from './client/components/Home';
-
 ```
 
 ## Client Side JS (L16)
@@ -88,9 +87,45 @@ import Home from './client/components/Home';
 - setting up the second bundle didn't seem to bad...it just highlights my need to learn Webpack and better
 understand the configuration of this stuff
 
+## The Public Directory (L18)
+
+
+## Why Client.js (L19)
+
+- Server => index.js
+- Browser => client.js ---> designed to *only* run on the browser
+- client.js is going to the be the start-up file for the client
+- the client.js file runs the React app and re-boots somewhat the html and takes over the event handlers, etc.
+
+## Client Bootup (L20)
+- We render the app once on the server and then we breathe life into it on the browser using the client.js
+file
+- This process is known as "hydration". The warning we get says that we should use `hydrate` and not `render`
+
 # Refactoring for Cleaner Code
 
+## Single Script Startup (L22)
+- we combined the babel module into one "base" config and then merged both the client config and the 
+server config with that base file
+- We also eliminated the need to have three separate `dev` commands to run our development environment
+
+## Ignoring Files with Webpack (L23)
+- **this change isn't necessary but it does speed up start-time**
+
+## Renderer Helper (L24)
+- we need to split out or React
+
 # Adding Navigation
+
+## BrowserRouter vs. StaticRouter (L26)
+- BrowserRouter requires the URL from the address bar which we don't have for server-side rendering
+- we create a Routes.js file that directs the user based on which is server-rendered and which is
+client-rendered
+
+## Route Configuration (L27)
+
+
+## HTML Mismatch (L28)
 
 # Integrating Support for Redux
 

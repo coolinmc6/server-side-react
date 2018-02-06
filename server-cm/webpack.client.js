@@ -1,6 +1,8 @@
 const path = require('path')
+const merge = require('webpack-merge');
+const baseConfig = require("./webpack.base.js")
 
-module.exports = {
+const config = {
 	// removed the node target
 
 	// changed the entry point
@@ -10,28 +12,8 @@ module.exports = {
 	output: {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, 'public')
-	},
-
-	// Tell webpack to run babel on every file it runs through
-	module: {
-		rules: [
-			{
-				// this regex ensures we only use babel on JS files
-				test: /\.js?$/,
-				loader: 'babel-loader',
-				exclude: /node_modules/,
-				options: {
-					presets: [
-						'react',
-						'stage-0', // this is going to be used for some async code
-
-						// 'env' is a master pre-set; run all the different transform rules to 
-						// to meet the requirements of the latest 2 versions of all popular browsers
-						[ 'env', { targets: { browsers: [ 'last 2 versions']}}]
-					]
-				}
-			}
-		]
 	}
 
 }
+
+module.exports = merge(baseConfig, config);
