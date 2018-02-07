@@ -126,8 +126,119 @@ client-rendered
 
 
 ## HTML Mismatch (L28)
+- click on little "i" to disable JS, you can see the server-rendered html is different than our client
+HTML because of the Routes
+
+## Routing Tiers (L30)
+- changed '/' to '*' so that it accepts all routes and they are just passed along to React Router
 
 # Integrating Support for Redux
+
+## The Users API (L31)
+- Users API: [https://react-ssr-api.herokuapp.com](https://react-ssr-api.herokuapp.com/)
+- 
+
+## Four Big Challenges (L32)
+- Four Big Redux Challenges
+	+ Redux needs different configuration on browser vs. server
+	+ Aspects of authentication needs to be handled on server. Normally this is only on browser
+		* cookie-based authentication, much trickier with server rendering
+	+ Need some way to detect when all initial data load action creators are completed on server
+		* probably the biggest challenge in server side rendering with Redux
+	+ Need state rehydration on the browser
+
+## Browser Store Creation (L33)
+- we need to setup two separate copies of redux
+- we'll make one inside our renderer file and one in our client
+-
+
+```js
+// client.js
+
+// import necessary helpers
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+
+// create store
+const store = createStore(reducers, {}, applyMiddleware(thunk));
+
+// wrap app in Provider
+<Provider store={store}>
+	<BrowserRouter >
+		<Routes />
+	</BrowserRouter>
+</Provider>, 
+```
+- `reducers` doesn't exist yet but we're going to do the server side first
+
+## Server Store Creation (L34)
+- This section involved multiple steps:
+	+ create a new file called `createStore`
+	+ import that file in our `index.js` file, create a store, and pass that to our renderer function
+		* this isn't yet complete but it's the basic frame for it
+	+ update our `renderer.js` file to receive the store
+
+```js
+// createStore.js
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+
+export default () => {
+	const store = createStore(reducers, {}, applyMiddleware(thunk));
+
+	return store;
+}
+```
+- we're going to create our store in our route handler and then pass it to the renderer
+- so instead of importing that into `renderer.js`, we'll import it into `index.js` in our server
+
+```js
+// index.js
+// ... CODE
+import createStore from './helpers/createStore'; // NEW
+
+const app = express();
+
+app.use(express.static('public'));
+app.get('*', (req, res) => {
+	const store = createStore();	// NEW
+
+	// some logic to initialize and load data into the store
+
+	res.send(renderer(req, store));	// send along store 
+})
+```
+
+```js
+// renderer.js
+// ... CODE
+import { Provider } from 'react-redux'; // NEW
+import Routes from '../client/Routes';
+
+export default (req, store) => {
+	const content = renderToString(
+		<Provider store={store}>
+			<StaticRouter location={req.path} context={{}}>
+				<Routes />
+			</StaticRouter>
+		</Provider>
+	);
+}
+```
+
+
+## FetchUsers Action Creator (L35)
+
+## The Users Reducer (L36)
+
+## Reducer Imports (L37)
+
+## UsersList Component (L38)
+
+## Babel Polyfill (L39)
+
+
 
 # Server Side Data Loading
 
