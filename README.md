@@ -241,11 +241,11 @@ export default (req, store) => {
 
 ## Babel Polyfill (L39)
 
-
-
 # Server Side Data Loading
 
 ## Detecting Data Load Completion (40)
+
+- using `componentDidMount()` doesn't work on server side; lifecycle methods don't run
 
 ## Solution #1 for Data Loading (41)
 
