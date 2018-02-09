@@ -2,6 +2,8 @@
 
 # Getting Started
 - GitHub repo: [https://github.com/StephenGrider/ReactSSRCasts](https://github.com/StephenGrider/ReactSSRCasts)
+- Important links:
+	+ Users API: [https://react-ssr-api.herokuapp.com](https://react-ssr-api.herokuapp.com/)
 
 ## Why Server Side Rendering (L3)
 - Browser requests page => Browser requests JS file => Content Visible
@@ -230,6 +232,7 @@ export default (req, store) => {
 
 ## FetchUsers Action Creator (L35)
 
+
 ## The Users Reducer (L36)
 
 ## Reducer Imports (L37)
@@ -241,6 +244,26 @@ export default (req, store) => {
 
 
 # Server Side Data Loading
+
+## Detecting Data Load Completion (40)
+
+## Solution #1 for Data Loading (41)
+
+## Solution #2 for Data Loading (42)
+
+## The React Router Config Library (43)
+
+## Updating Route Uses (44)
+
+## The MatchRoutes Function (45)
+
+## LoadData Functions (46)
+
+## Store Dispatch (47)
+
+## Waiting for Data Load Completion (48)
+
+## Breather and Review (L49)
 
 # Organization with Page Components
 
