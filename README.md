@@ -248,22 +248,45 @@ export default (req, store) => {
 - using `componentDidMount()` doesn't work on server side; lifecycle methods don't run
 
 ## Solution #1 for Data Loading (41)
+- one point of server-side rendering is that we can put content on the screen immediately
 
 ## Solution #2 for Data Loading (42)
+- this is the popular solution to the last video's problem
+- updated Routes file to use new format for server-side rendering: an array of objects
 
 ## The React Router Config Library (43)
+- updated `renderer.js` so that it imports the Routes differently using the renderRoutes method
+from react router
 
 ## Updating Route Uses (44)
 
 ## The MatchRoutes Function (45)
+- import `matchRoutes` into `client/index.js`
 
 ## LoadData Functions (46)
+- we now have to modify three files to load the data without having to render our app.
+- Normally, we could just do componentDidMount() and we'd be fine
 
 ## Store Dispatch (47)
+- **this is the hardest part of SSR**
+- These are the steps:
+	+ `index.js` (server): we are going to call the loadData function, passing in the redux store
+	+ `loadData()` function (in components): manually dispatch action creator
+	+ `loadData()` function (in components): we're going to pass the action to redux store
+	+ `loadData()` function (in components): from this call, we'll return a promis
+	+ `index.js` (server): back inside the index.js, we wait for promis to resolve
+	+ `index.js` (server): then render the app
+- 
 
 ## Waiting for Data Load Completion (48)
+- by this point we can successfully loadData and have an array of promises
 
 ## Breather and Review (L49)
+- the connect function works with the Provider tag 
+- we are not using the connect tag because it only works with the Provider and in our situation, 
+we need to use Redux before any rendering
+- why are we using the dispatch function?
+
 
 # Organization with Page Components
 
