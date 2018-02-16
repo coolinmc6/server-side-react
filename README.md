@@ -290,6 +290,110 @@ we need to use Redux before any rendering
 
 # Organization with Page Components
 
+## The Page Approach (L50)
+
+## Refactoring Pages (L51)
+
+```js
+// Routes.js
+import React from 'react';
+import HomePage from './pages/HomePage';
+import UsersListPage, { loadData } from './pages/UsersListPage';
+
+export default [
+	{
+		path: '/',
+		// component: HomePage,
+		...Home, // ES6 => we are now using the spread operator to bring the 'Home' component
+		exact: true
+	},
+	{
+		loadData, // <= ES6
+		path: '/users',
+		component: UsersListPage
+	}
+];
+
+// pages/HomePage.js
+import React from 'react';
+
+const Home = () => {
+	return (
+		<div>
+			<div>I'm the home BEST EVER component</div>
+			<button onClick={() => console.log('Hi there!')}>Press Me!</button>
+		</div>
+
+	)
+}
+
+
+export default {
+	component: Home
+}
+
+```
+- Instead of exporting the entire 'Home' component (function), we are exporting an object with a property
+`component` that has a value of the `Home` component
+  - we will probably create a loadData property shortly
+- Notice that the spread operator is adding the exported object's properties directly into the two Routes
+objects. We are setting the load data and component properties in the components/pages themselves
+- Here is the final Routes array:
+
+```js
+export default [
+	{
+		path: '/',
+		...HomePage,
+		exact: true
+	},
+	{
+		...UsersListPage,
+		path: '/users',
+	}
+];
+```
+
+
+## Refactoring Page Exports (L52)
+
+## Client State Rehydration (L53)
+- We are getting this warning: `bundle.js:2940 Warning: Did not expect server HTML to contain a <li> in <ul>`
+
+## More on Client State Rehydration (L54)
+- In the last video we realized that our client side react app is clearing out the page temporarily
+because none of our server side state from the redux store is being communicated down to the browser
+- We are going to take all of our state out of the redux store, dump it into the html template, and then
+use that to initialize our store on the client side
+
+## Dumping State to Templates (L55)
+```js
+// renderer.js
+
+// we updated our template to include the script tag where we initialized our state
+return `
+	<html>
+		<head></head>
+		<body>
+			<div id="root">${content}</div>
+			<script>
+			window.INITIAL_STATE = ${JSON.stringify(store.getState())}
+			</script>
+			<script src="bundle.js"></script>
+		</body>
+	</html>
+`;
+
+// client.js
+// and then instead of initializing our store with a blank object, with initialized it with
+// our INITIAL_STATE object
+const store = createStore(reducers, window.INITIAL_STATE, applyMiddleware(thunk));
+
+```
+
+## Mitigating XSS Attacks (L56)
+- adding `serialize` to renderer to prevent the insertion of script tags
+
 # Authentication in a Server Side Rendering World
 
 # Error Handling
