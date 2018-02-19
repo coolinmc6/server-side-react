@@ -396,6 +396,77 @@ const store = createStore(reducers, window.INITIAL_STATE, applyMiddleware(thunk)
 
 # Authentication in a Server Side Rendering World
 
+## Authentication Issues (L57)
+- all cookies correspond to the domain, subdomain and port that issued it
+
+## Authentication via Proxy (L58)
+- the browser thinks its communicating with the API server but it's really communicating with the
+render server
+
+## Why Not JWT's? (L59)
+- why not JWT?
+- For JWT's to work, we'd make the request, the Renderer would ask for the JWT, the browser would give
+the JWT, and then the Renderer would provide the content
+- we'd essentially no longer be able to provide content right away
+- this is why we are using cookies and not JWT
+- To do server side rendering properly with authentication, it must be cookie-based so that the 
+authentication token (cookie) is sent on the initial request
+
+## Proxy Setup (L60)
+- the goal of server side rendering or for it to be called an isomorphic web app is to write the 
+exact same code that gets executed on BOTH the server and the browser
+- express-http-proxy
+
+## Renderer to API Communication (L61)
+- we want axios to act differently depending on whether we are on the server or not
+- instead of essentially writing an if-else statement for every action creator, we are going to do
+something a little different
+
+## Axios Instances with Redux Thunk (L62)
+
+## Client Axios Instance (L63)
+- we created an axiosInstance that has a baseURL of `/api` which means that `/api` is prepended to 
+every request
+
+```js
+// client.js
+const axiosInstance = axios.create({
+	baseURL: '/api'
+})
+
+// action creator => index.js
+// updated with the new thunk.withExtraArgument() function including the original dispatch, 
+//   the getState function, and our api
+export const fetchUsers = () => async (dispatch, getState, api) => {
+	const res = await api.get('/users');
+
+	dispatch({
+		type: FETCH_USERS,
+		payload: res
+	});
+}
+
+```
+
+
+## Server Axios Instance (L64)
+
+## The Header Component (L65)
+
+## Adding an App Component (L66)
+
+## Building the Header (L67)
+
+## Fetching Auth Status (L68)
+
+## Calling FetchCurrentUser (L69)
+
+## Connecting the Header (L70)
+
+## Header Customization (L71)
+
+## Header Styling (L72)
+
 # Error Handling
 
 # Adding Better SEO Support
