@@ -469,8 +469,59 @@ export const fetchUsers = () => async (dispatch, getState, api) => {
 
 # Error Handling
 
+## Error Handling Solution #1 (L81)
+- adding a simple catch statement on the end of the Promise.all call in `/client/index.js`
+- Stephen does not recommend this
+- We tell them something went wrong but we don't tell them that they need to log in to view the page
+
+## Error Handling Solution #2 (L82)
+- the second solution is just always trying to show something
+
+## Error Handling Solution #3 (L83)
+- Promise.all fails if any of the promises fail
+- We are going to wrap every promise in another promise so that even if one of the inner promises fail, 
+we can still get to the `.then()` call and take some action
+
+## The Require Auth Component (L84)
+
+
+## Implementing Require Auth (L85)
+
+
+## Require Auth in Use (L86)
+
+
+## Handling Redirects (L87)
+
 # Adding Better SEO Support
 
+## Meta Tags (L88)
+- Open Graph Protocol: [http://ogp.me/](http://ogp.me/)
+- **LOOK AT THIS AGAIN**
+
+## Setting Tags with Helmet (L89)
+- React Helmet
+
+## React Helmet in Practice (L90)
+
+
+## Dynamic Title Tags (L91)
+
+
+## RenderToString vs RenderToNodeStream (L92)
+- ReactDom Server
+- `renderToNodeStream`
+- TTFB => Time to First Byte
+- 200ms is fine because of the API we are using => it's throttling
+- `renderToNodeStream` is only 20% of the TTFB
+- you cannot change your status code once you've started sending some data and that's what 
+renderToNodeStream does - it sends little bits of information as it is ready
+
 # Wrapup
+
+## Next Steps and Wrapup
+- Start with server-side rendering if you know you're going to be doing it. It's hard to go back
+and change a normal app to server-side rendering
+
 
 
